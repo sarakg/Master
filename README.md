@@ -1,5 +1,4 @@
-# Master
-Masteroppgave 
+# Master's Thesis 
 
 This repository page contains the R-script for my master's thesis. 
 To replicate my thesis and findings, simply import the script into RStudio, and run the code
