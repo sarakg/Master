@@ -17,9 +17,6 @@ summary(vdem2$v2x_libdem)
 vdem2$v2x_libdem_rev <- vdem2$v2x_libdem*-1+max(vdem2$v2x_libdem, na.rm = TRUE)
 summary(vdem2$v2x_libdem_rev)
 
-ggplot(vdem2, aes(v2x_libdem)) + geom_histogram()
-ggplot(vdem2, aes(v2x_libdem_rev)) + geom_histogram()
-
 ## Histogram over liberal democracy index to show distribution 
 ggplot(vdem2, aes(v2x_libdem_rev)) +
   geom_histogram(fill = "grey60", col = "white") +
