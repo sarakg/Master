@@ -105,14 +105,14 @@ neighbor_mean <- left_join(x = neighbor_mean, # Includes all rows in neighbor_me
 
 View(neighbor_mean)
 
-#### Percentage ####
+#### Share ####
 
-## Merging vdem4 and gapminder (percentage)
+## Merging vdem4 and gapminder (share)
 vdem4 <- left_join(x = vdem4, # Includes all rows in vdem4
                    y = gapminder, 
                    by = c("country_name"="country", "year"))
 
-## Merging neighbor_percentage and gapminder (percentage)
+## Merging neighbor_percentage and gapminder (share)
 population2_pct <- left_join(x = vdem4, # Includes all rows in vdem4
                              y = gapminder,  
                              by = c("country_name"="country", "year"))

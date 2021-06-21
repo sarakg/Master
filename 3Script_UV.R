@@ -10,10 +10,6 @@
 ####                 ####
 #########################
 
-#################################################
-#### Mean change in world level of democracy ####
-#################################################
-
 #### Mean change in world democracy level ####
 
 ## Adding a variable for mean change in world level of democracy each year, minus the current country observation
@@ -108,10 +104,6 @@ ggsave("histogram_EDI_mean_world_change.png",
 #### Regional diffusion ####
 ####                    ####
 ############################
-
-############################################################################
-#### Creating a variable for mean change in regional level of democracy ####
-############################################################################
 
 #### Mean regional democracy level ####
 
@@ -214,10 +206,10 @@ strip.labs <- c("1" = "Eastern Europe and post USSR",
 ## Scatterplot, mean LDI
 ggplot(vdem3, aes(year, mean_region_change_rev_lag1, color = e_regionpol)) +
   geom_point() + 
-  geom_smooth(color = "black") + 
+  geom_smooth(color = "black") +
   theme_classic() +
   facet_wrap(vars(e_regionpol)) +
-  facet_rep_wrap(~ e_regionpol, scales = "free_y",  #### Free or fixed?? ####
+  facet_rep_wrap(~ e_regionpol, scales = "free_y", # Can be free or fixed
                  repeat.tick.labels = 'all', labeller = as_labeller(strip.labs)) +
   theme(legend.title = element_blank()) +
   geom_hline(yintercept = 0, linetype = "dashed") +
@@ -226,9 +218,9 @@ ggplot(vdem3, aes(year, mean_region_change_rev_lag1, color = e_regionpol)) +
        y = "Mean change", 
        title = "Scatterplot for mean change in regional democracy level 1900-2019", 
        subtitle = "Liberal Democracy Index (LDI)")
-# Countries in category 5 (Western Europe + North America) was affected by WW2, 
-# and countries in category 2 (Eastern Europe + post USSR) was affected by the end of the cold war, 
-# while some countries in cateory 10 (The Carribean) was affected around year 2000
+# Countries in category 5 (Western Europe + North America) were affected by WW2, 
+# and countries in category 2 (Eastern Europe + post USSR) were affected by the end of the cold war, 
+# while some countries in category 10 (The Caribbean) were affected around year 2000
 
 ggsave("scatter_mean_LDI_e_region.png", plot = last_plot(), 
        width = 300, 
@@ -286,12 +278,8 @@ ggsave("scatter_mean_EDI_e_region.png", plot = last_plot(),
 ####                          ####
 ##################################
 
-#######################################################################################
-#### Creating a variable for mean change in neighboring countries' democracy level ####
-#######################################################################################
-
-## Downloading a COW dataset for contiguous countries. Can be downloaded from: 
-# https://correlatesofwar.org/data-sets/direct-contiguity 
+## Downloading the COW dataset for contiguous countries. Can be downloaded from: 
+## https://correlatesofwar.org/data-sets/direct-contiguity 
 cow <- read.csv("contdird.csv")
 
 ## Inspecting the data

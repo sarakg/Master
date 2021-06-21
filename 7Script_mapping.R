@@ -14,7 +14,9 @@ ggplot(world_map, aes(long, lat, group = group)) +
 setdiff(world_map$region, vdem3$country_name)
 setdiff(vdem3$country_name, world_map$region)
 
+##################################
 #### Autocratization Map 2019 ####
+##################################
 
 ## LDI
 aut_map <- vdem3 %>%
@@ -37,6 +39,7 @@ ggplot(aut_map_map, aes(long, lat, group = group)) +
   theme_void() +
   theme(legend.position = "bottom") +
   guides(fill = guide_legend(reverse = TRUE)) + 
+  labs(title = "Autocratization LCI 2019") +
   scale_fill_discrete(name = "", labels = c("No autocratization", "Autocratization"))
 
 ggsave("autocratization_map_LDI.png", 
@@ -108,22 +111,23 @@ ggsave("autocratization_map_EDI.png",
        units = c("mm"),
        path = "C:/Users/sk_gr/OneDrive - Universitetet i Oslo/5. år statsvitenskap/STV4992/R/Masteroppgave_R/Plots")
 
-
+#########################################
 #### LDI, LCI and EDI scores in 2019 ####
+#########################################
 
 ## Map showing each country's LDI score
 LDI_map <- vdem3 %>%
   dplyr::filter(year == 2019) %>%
-  dplyr::select(country_name, v2x_libdem) %>%
-  dplyr::rename(region = country_name, value = v2x_libdem) %>%
+  dplyr::select(country_name, v2x_libdem_rev) %>%
+  dplyr::rename(region = country_name, value = v2x_libdem_rev) %>%
   dplyr::mutate(region = ifelse(region == "United States of America", "USA", 
-                          ifelse(region == "Burma/Myanmar", "Myanmar", 
-                           ifelse(region == "United Kingdom", "UK",
-                            ifelse(region == "Republic of the Congo", "Republic of Congo", 
-                             ifelse(region == "The Gambia", "Gambia", 
-                              ifelse(region == "Eswatini", "Swaziland", 
-                               ifelse(region == "Trinidad og Tobago", "Trinidad", 
-                                ifelse(region == "North Macedonia", "Macedonia", region))))))))) 
+                                ifelse(region == "Burma/Myanmar", "Myanmar", 
+                                       ifelse(region == "United Kingdom", "UK",
+                                              ifelse(region == "Republic of the Congo", "Republic of Congo", 
+                                                     ifelse(region == "The Gambia", "Gambia", 
+                                                            ifelse(region == "Eswatini", "Swaziland", 
+                                                                   ifelse(region == "Trinidad og Tobago", "Trinidad", 
+                                                                          ifelse(region == "North Macedonia", "Macedonia", region))))))))) 
 
 LDI_map_map <- left_join(LDI_map, world_map, by = "region")
 
@@ -142,16 +146,16 @@ ggsave("world_map_LDI_score.png", plot = last_plot(),
 ## Map showing each country's LCI score
 LCI_map <- vdem3 %>%
   dplyr::filter(year == 2019) %>%
-  dplyr::select(country_name, v2x_liberal) %>%
-  dplyr::rename(region = country_name, value = v2x_liberal) %>%
+  dplyr::select(country_name, v2x_liberal_rev) %>%
+  dplyr::rename(region = country_name, value = v2x_liberal_rev) %>%
   dplyr::mutate(region = ifelse(region == "United States of America", "USA", 
-                          ifelse(region == "Burma/Myanmar", "Myanmar", 
-                           ifelse(region == "United Kingdom", "UK", 
-                            ifelse(region == "Republic of the Congo", "Republic of Congo", 
-                             ifelse(region == "The Gambia", "Gambia", 
-                              ifelse(region == "Eswatini", "Swaziland", 
-                               ifelse(region == "Trinidad og Tobago", "Trinidad", 
-                                ifelse(region == "North Macedonia", "Macedonia", region))))))))) 
+                                ifelse(region == "Burma/Myanmar", "Myanmar", 
+                                       ifelse(region == "United Kingdom", "UK", 
+                                              ifelse(region == "Republic of the Congo", "Republic of Congo", 
+                                                     ifelse(region == "The Gambia", "Gambia", 
+                                                            ifelse(region == "Eswatini", "Swaziland", 
+                                                                   ifelse(region == "Trinidad og Tobago", "Trinidad", 
+                                                                          ifelse(region == "North Macedonia", "Macedonia", region))))))))) 
 
 LCI_map_map <- left_join(LCI_map, world_map, by = "region")
 
@@ -170,16 +174,16 @@ ggsave("world_map_LCI_score.png", plot = last_plot(),
 ## Map showing each country's EDI score
 EDI_map <- vdem3 %>%
   dplyr::filter(year == 2019) %>%
-  dplyr::select(country_name, v2x_polyarchy) %>%
-  dplyr::rename(region = country_name, value = v2x_polyarchy) %>%
+  dplyr::select(country_name, v2x_polyarchy_rev) %>%
+  dplyr::rename(region = country_name, value = v2x_polyarchy_rev) %>%
   dplyr::mutate(region = ifelse(region == "United States of America", "USA", 
-                          ifelse(region == "Burma/Myanmar", "Myanmar", 
-                           ifelse(region == "United Kingdom", "UK", 
-                            ifelse(region == "Republic of the Congo", "Republic of Congo", 
-                             ifelse(region == "The Gambia", "Gambia", 
-                              ifelse(region == "Eswatini", "Swaziland", 
-                               ifelse(region == "Trinidad og Tobago", "Trinidad", 
-                                ifelse(region == "North Macedonia", "Macedonia", region))))))))) 
+                                ifelse(region == "Burma/Myanmar", "Myanmar", 
+                                       ifelse(region == "United Kingdom", "UK", 
+                                              ifelse(region == "Republic of the Congo", "Republic of Congo", 
+                                                     ifelse(region == "The Gambia", "Gambia", 
+                                                            ifelse(region == "Eswatini", "Swaziland", 
+                                                                   ifelse(region == "Trinidad og Tobago", "Trinidad", 
+                                                                          ifelse(region == "North Macedonia", "Macedonia", region))))))))) 
 
 EDI_map_map <- left_join(EDI_map, world_map, by = "region")
 
